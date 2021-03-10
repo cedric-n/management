@@ -1,0 +1,13 @@
+:root {
+
+  --first-color: #52489C;
+  --second-color:#30A0E1;
+  --third-color: #FFFAFF;
+
+
+  --spacing: 8px;
+  --spacing2: calc(var(--spacing) * 2);
+  --spacing3: calc(var(--spacing) * 3);
+  --spacing4: calc(var(--spacing) * 4);
+  --spacing5: calc(var(--spacing) * 5);
+}
