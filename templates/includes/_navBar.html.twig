@@ -1,0 +1,24 @@
+{% block stylesheets %}
+    {{ encore_entry_link_tags('nav') }}
+{% endblock %}
+
+
+    <nav>
+        <img class="logo" src="{{ asset('build/images/logo.png') }}" alt=""/>
+        <input id="nav-toggle" class="check-burger" type="checkbox">
+        <ul class="nav_links">
+            <li><a href="#">First</a></li>
+            <li><a href="#">Second</a></li>
+            <li><a href="#">Third</a></li>
+            <li><a href="#">Fourth</a></li>
+        </ul>
+        <a class="cta" href="#"><button>Connexion</button></a>
+        <label for="nav-toggle"></label>
+        <a href="#" class="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </a>
+    </nav>
+
+

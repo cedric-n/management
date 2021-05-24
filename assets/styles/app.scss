@@ -11,3 +11,10 @@
   --spacing4: calc(var(--spacing) * 4);
   --spacing5: calc(var(--spacing) * 5);
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+

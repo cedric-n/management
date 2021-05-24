@@ -1,0 +1,149 @@
+@import "app";
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap');
+
+/* Links for the navbar */
+li, a {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
+  font-size: var(--spacing2);
+  text-decoration: none;
+}
+
+/* navBars structure*/
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: var(--spacing) var(--spacing5);
+  background-color: var(--first-color);
+}
+
+.nav_links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.logo {
+  cursor: pointer;
+  width: calc(var(--spacing5)*3);
+  height: calc(var(--spacing5)*3);
+  padding: 0;
+}
+
+.nav_links {
+  list-style: none;
+}
+
+
+
+.nav_links li a, button {
+  transition: all 0.3s 0s;
+  color: var(--third-color);
+}
+
+.nav_links li a:hover {
+  color: var(--second-color);
+}
+
+button {
+  padding: var(--spacing) var(--spacing2);
+  background-color: rgba(48, 160, 225, 0.7);
+  border: none;
+  border-radius: var(--spacing5);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(48, 160, 225, 1);
+}
+
+.check-burger {
+  display:none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+
+
+  input[type=checkbox]:not(:checked) ~ ul {
+    display: none;
+  }
+
+  a {
+    margin-right: 16px;
+  }
+
+
+
+  nav {
+    justify-content: space-between;
+    padding: var(--spacing) 0;
+  }
+
+  .nav_links {
+    display: inline-block;
+    position: absolute;
+    top:96px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+
+  .nav_links li {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+  }
+
+  li:hover {
+    background-color: var(--second-color);
+  }
+
+  .nav_links li a:hover {
+    color: var(--third-color);
+  }
+
+  .logo {
+    cursor: pointer;
+    width: calc(var(--spacing5)*2);
+    height: calc(var(--spacing5)*2);
+    padding: 0;
+    margin-left: 8px;
+  }
+
+  .burger div{
+    width: 60px;
+    height: 10px;
+    background-color: black;
+    margin-bottom: 6px;
+    border-radius: 15px;
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .check-burger {
+    visibility: hidden;
+  }
+
+  label {
+    position: relative;
+    width: 60px;
+    height: 48px;
+    left: 117px;
+    bottom: 3px;
+    z-index: 2;
+  }
+
+
+
+
+}
+
+
