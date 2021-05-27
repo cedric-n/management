@@ -35,6 +35,8 @@ Encore
      */
     .addEntry('app', './assets/styles/app.scss')
     .addEntry('nav', './assets/styles/navBar.scss')
+    .addEntry('foot','./assets/styles/footer.scss')
+    .addEntry('home','./assets/styles/home.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

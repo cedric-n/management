@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed&display=swap');
+
 :root {
 
   --first-color: #52489C;
   --second-color:#30A0E1;
   --third-color: #FFFAFF;
+  --fourth-color: #180303;
 
 
   --spacing: 8px;
@@ -16,5 +20,52 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+p , a {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto Condensed', sans-serif;;
+}
+
+@media screen and (max-width: 600px) {
+  p{
+    font-size: var(--spacing2);
+  }
+
+  h1 {
+
+  }
+
+  h2 {
+
+  }
+
+  h3 {
+
+  }
+
+}
+
+@media screen and (min-width: 601px) {
+
+  p{
+    font-size: var(--spacing3);
+  }
+
+  h1 {
+
+  }
+
+  h2 {
+
+  }
+
+  h3 {
+
+  }
+
 }
 
