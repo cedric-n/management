@@ -1,0 +1,19 @@
+@import "app";
+
+footer {
+  width: 100%;
+  height: 136px;
+  background-color: var(--first-color);
+}
+
+.content-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 136px;
+  align-items: center;
+}
+
+.content-footer ul li {
+  list-style: none;
+}
