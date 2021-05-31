@@ -6,22 +6,13 @@
 
 {% block body %}
         <main>
-                <div class="banner">
-                        <div class="presentation">
-                                <h2>Bienvenu sur ***** </h2>
-                                <p>Ici vous pourrez gérer l'évolution de votre économie et créez un emploi du temps à votre mesure</p>
-                        </div>
-                        <div class="sign-up">
-                                <button>S'inscrire</button>
-                                <button>Voire les fonctionnalités</button>
-                        </div>
-                </div>
+                {% block banner %}
+                        {% include 'includes/_banner_home.html.twig' %}
+                {% endblock %}
 
-                <div>
-
-                </div>
-
-
+                {% block presentation %}
+                        {% include 'includes/_presentation_home.html.twig' %}
+                {% endblock %}
         </main>
 
 

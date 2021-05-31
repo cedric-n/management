@@ -1,9 +1,11 @@
 @import "app";
 
 footer {
+  position: relative;
   width: 100%;
-  height: 136px;
+  height: 10%;
   background-color: var(--first-color);
+  bottom: 0;
 }
 
 .content-footer {
