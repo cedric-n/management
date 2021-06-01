@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>All Incomes :</h1>
+
+        {% for income in incomes %}
+            <div>
+                <h2>{{ loop.index }} / {{ income.name }} - Price : {{ income.price }} - Frequency: {{ income.frequency }}</h2>
+                <a href="{{ path("show_income", { id: income.id}) }}">See details</a>
+            </div>
+        {% else %}
+            Aucun autre revenu
+        {% endfor %}
+
+        <a href="{{ path('home_index') }}">
+            Retour à la homepage
+        </a>
+    </main>
+
+{% endblock %}

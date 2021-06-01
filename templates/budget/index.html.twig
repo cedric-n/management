@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+        {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+        <main>
+                <h1>All Type Budget :</h1>
+
+                {% for budget in budgets %}
+                        <div>
+                                <h2>{{ loop.index }} / Name : {{ budget.name }} - Type : {{ budget.type }}  </h2>
+                                <a href="{{ path("budget_show", { budgetName: budget.name }) }}"> Voir détails</a>
+                        </div>
+                {% else %}
+                        Aucun autre budget
+                {% endfor %}
+
+                <a href="{{ path('home_index') }}">
+                        Retour à la homepage
+                </a>
+        </main>
+{% endblock %}

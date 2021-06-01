@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div>
+            <h1>{{ income.name }}</h1>
+            <p>Budget : {{ income.budget.name }}</p>
+        </div>
+
+        <a href="{{ path('income_home') }}">
+            Back to the list Incomes
+        </a>
+    </main>
+{% endblock %}
