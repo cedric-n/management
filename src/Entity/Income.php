@@ -33,7 +33,7 @@ class Income
     private $frequency;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Budget::class)
+     * @ORM\ManyToOne(targetEntity=Budget::class, inversedBy="incomes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $budget;

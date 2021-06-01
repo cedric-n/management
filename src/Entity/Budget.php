@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BudgetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Budget
      * @ORM\Column(type="integer")
      */
     private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Income", mappedBy="budget")
+     */
+    private $incomes;
+
+    public function __construct()
+    {
+        $this->incomes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -55,4 +67,45 @@ class Budget
 
         return $this;
     }
+
+    /**
+     * @return Collection|Income[]
+     */
+    public function getIncomes(): Collection
+    {
+        return $this->incomes;
+    }
+
+    /**
+     * @param Income $income
+     * @return Budget
+     */
+    public function addIncome(Income $income): self
+    {
+        if (!$this->incomes->contains($income)) {
+            $this->incomes[] = $income;
+            $income->setBudget($this);
+
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Income $income
+     * @return Budget
+     */
+    public function removeIncome(Income $income): self
+    {
+        if ($this->incomes->contains($income)) {
+            $this->incomes->removeElement($income);
+
+            if ($income->getBudget() === $this) {
+                $income->setBudget(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
