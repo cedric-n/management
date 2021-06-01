@@ -7,12 +7,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * Class IncomeController
+ * @package App\Controller
+ * @Route("incomes/", name="income_")
+ */
 class IncomeController extends AbstractController
 {
 
     /**
      * @return Response
-     * @Route("income", name="income_home")
+     * @Route("", name="index")
      */
     public function index(): Response
     {
@@ -31,20 +37,16 @@ class IncomeController extends AbstractController
     /**
      *  Getting an income by his id
      *
-     * @param int $id
+     * @param Income $income
      * @return Response
-     * @Route("/show/{id<^[0-9]+$>}", name="show_income")
+     * @Route("show/{id<^[0-9]+$>}", name="show")
      */
-    public function show(int $id): Response
+    public function show(Income $income): Response
     {
-
-        $income = $this->getDoctrine()
-            ->getRepository(Income::class)
-            ->findOneBy(['id' => $id]);
 
         if(!$income) {
             throw $this->createNotFoundException(
-                'No income with id : ' . $id . ' found in income table'
+                'No income with id : ' . $income->getId() . ' found in income table'
             );
         }
 

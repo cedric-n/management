@@ -11,7 +11,7 @@
         {% for income in incomes %}
             <div>
                 <h2>{{ loop.index }} / {{ income.name }} - Price : {{ income.price }} - Frequency: {{ income.frequency }}</h2>
-                <a href="{{ path("show_income", { id: income.id}) }}">See details</a>
+                <a href="{{ path("income_show", { id: income.id}) }}">See details</a>
             </div>
         {% else %}
             Aucun autre revenu

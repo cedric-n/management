@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class BudgetController
  * @package App\Controller
- * @Route("/budgets", name="budget_")
+ * @Route("/budgets/", name="budget_")
  */
 class BudgetController extends AbstractController
 {
 
     /**
      * @return Response
-     * @Route("/", name="index")
+     * @Route("", name="index")
      */
     public function index(): Response
     {
