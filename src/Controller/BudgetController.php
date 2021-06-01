@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\BudgetType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
@@ -69,7 +70,7 @@ class BudgetController extends AbstractController
     /**
      * @param string $budgetName
      * @return Response
-     * @Route("show/{budgetName}", name="show")
+     * @Route("show/{budgetName}/", name="show")
      */
     public function show(string $budgetName): Response
     {
@@ -92,6 +93,34 @@ class BudgetController extends AbstractController
             'budget/show.html.twig',
             ['budgets' => $budget]
         );
+    }
+
+    /**
+     * @Route("edit/{budgetName}/", name="edit", methods={"GET","POST"})
+     * @ParamConverter("budget", class="App\Entity\Budget", options={ "mapping": {"budgetName": "name"}})
+     * @param Request $request
+     * @param Budget $budget
+     * @return Response
+     */
+    public function edit(Request $request, Budget $budget): Response
+    {
+
+        $form = $this->createForm(BudgetType::class, $budget);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('budget_index');
+        }
+
+        return $this->render('budget/edit.html.twig',[
+            'budget' => $budget,
+            'form' => $form->createView(),
+        ]);
+
     }
 
 }
