@@ -123,4 +123,23 @@ class BudgetController extends AbstractController
 
     }
 
+    /**
+     * @Route("/delete/{budgetName}/", name="delete", methods={"DELETE"})
+     * @ParamConverter("budget", class="App\Entity\Budget", options={ "mapping": {"budgetName": "name"}})
+     * @param Request $request
+     * @param Budget $budget
+     * @return Response
+     */
+    public function delete(Request $request, Budget $budget): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $budget->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($budget);
+            $entityManager->flush();
+            $this->addFlash('danger', 'Le budget a bien été supprimé');
+        }
+
+        return  $this->redirectToRoute('budget_index');
+    }
+
 }

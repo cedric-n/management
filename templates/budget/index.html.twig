@@ -12,6 +12,9 @@
                         <div>
                                 <h2>{{ loop.index }} / Name : {{ budget.name }} - Type : {{ budget.type }}  </h2>
                                 <a href="{{ path("budget_show", { budgetName: budget.name }) }}"> Voir détails</a>
+                                <div>
+                                        {{ include('budget/_delete.html.twig') }}
+                                </div>
                         </div>
                 {% else %}
                         Aucun autre budget
