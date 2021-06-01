@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Add a budget">
+        {{ form_end(form) }}
+    </main>
+{% endblock %}
