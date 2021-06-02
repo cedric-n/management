@@ -91,7 +91,7 @@ class IncomeController extends AbstractController
     }
 
     /**
-     * @Route("edit/{id<^[0-9]+$>}", name="edit")
+     * @Route("edit/{id<^[0-9]+$>}", name="edit", methods={"GET","POST"})
      * @ParamConverter("income", class="App\Entity\Income", options={"mapping": {"id": "id"}})
      * @param Request $request
      * @param Income $income
@@ -116,6 +116,25 @@ class IncomeController extends AbstractController
             'form' => $form->createView(),
         ]);
 
+    }
+
+    /**
+     * @Route("delete/{id<^[0-9]+$>}", name="delete", methods={"DELETE"})
+     * @ParamConverter("income", class="App\Entity\Income", options={"mapping": {"id": "id"}})
+     * @param Request $request
+     * @param Income $income
+     * @return Response
+     */
+    public function delete(Request $request, Income $income): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $income->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($income);
+            $entityManager->flush();
+            $this->addFlash('danger', 'Le budget a bien été supprimé');
+        }
+
+        return  $this->redirectToRoute('income_index');
     }
 
 
