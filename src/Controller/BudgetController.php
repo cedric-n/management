@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Budget;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,7 +43,7 @@ class BudgetController extends AbstractController
      * @return Response
      * @Route("new/", name="new")
      */
-    public function new(Request $request) : Response
+    public function new(Request $request, Slugify $slugify) : Response
     {
         $budget = new Budget();
 
@@ -51,6 +52,9 @@ class BudgetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+
+            $slug = $slugify->generate($budget->getName());
+            $budget->setSlug($slug);
 
             $entityManager = $this->getDoctrine()->getManager();
 
