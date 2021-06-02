@@ -33,7 +33,6 @@ class IncomeType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => true,
-                'by_reference' => false
             ])
         ;
     }

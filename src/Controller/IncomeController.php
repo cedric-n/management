@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
@@ -87,6 +88,34 @@ class IncomeController extends AbstractController
             'income/show.html.twig',
             ['income' => $income]
         );
+    }
+
+    /**
+     * @Route("edit/{id<^[0-9]+$>}", name="edit")
+     * @ParamConverter("income", class="App\Entity\Income", options={"mapping": {"id": "id"}})
+     * @param Request $request
+     * @param Income $income
+     * @return Response
+     */
+    public function edit(Request $request, Income $income): Response
+    {
+
+        $form = $this->createForm(IncomeType::class, $income);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('income_index');
+        }
+
+        return $this->render('income/edit.html.twig',[
+            'income' => $income,
+            'form' => $form->createView(),
+        ]);
+
     }
 
 
