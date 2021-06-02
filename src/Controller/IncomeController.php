@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Income;
 use App\Form\IncomeType;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,9 +42,10 @@ class IncomeController extends AbstractController
     /**
      * @Route("new/", name="new")
      * @param Request $request
+     * @param Slugify $slugify
      * @return Response
      */
-    public function new(Request $request) : Response
+    public function new(Request $request, Slugify $slugify) : Response
     {
         $income = new Income();
 
@@ -52,6 +54,9 @@ class IncomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $slug = $slugify->generate($income->getName());
+            $income->setSlug($slug);
 
             $entityManager = $this->getDoctrine()->getManager();
 
