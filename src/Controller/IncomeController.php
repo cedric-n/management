@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Income;
+use App\Form\IncomeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,6 +33,37 @@ class IncomeController extends AbstractController
         return $this->render(
             'income/index.html.twig',
             ['incomes' => $incomes]
+        );
+    }
+
+
+    /**
+     * @Route("new/", name="new")
+     * @param Request $request
+     * @return Response
+     */
+    public function new(Request $request) : Response
+    {
+        $income = new Income();
+
+        $form = $this->createForm(IncomeType::class, $income);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($income);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('income_index');
+        }
+
+        return $this->render(
+            'income/new.html.twig',
+            ["form" => $form->createView()]
         );
     }
 

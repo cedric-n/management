@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\IncomeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,11 +20,20 @@ class Income
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champs {{ label }} doit être rempli pour définir son nom")
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 25,
+     *     minMessage = "Vous avez entrer {{ value }} caractère, cependant le champs peut contenir à minimum {{ limit }}",
+     *     maxMessage = "Vous avez entrer {{ value }} caractère, cependant le champs peut contenir au maximum {{ limit }}"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Le champs {{ label }} doit être rempli pour définir un montant")
+     * @Assert\PositiveOrZero
      */
     private $price;
 
@@ -84,7 +94,7 @@ class Income
         return $this->budget;
     }
 
-    public function setBudget(?Budget $budget): self
+    public function setBudget(?Budget $budget): ?self
     {
         $this->budget = $budget;
 
