@@ -12,7 +12,12 @@
             <li><a href="#">Third</a></li>
             <li><a href="#">Fourth</a></li>
         </ul>
-        <a class="cta" href="#"><button>Connexion</button></a>
+
+        {% if app.user %}
+            <a class="cta" href="{{ path("app_logout") }}"><button>Déconnexion</button></a>
+        {% else %}
+            <a class="cta" href="{{ path("app_login") }}"><button>Connexion</button></a>
+        {% endif %}
         <label for="nav-toggle"></label>
         <a href="#" class="burger">
             <div></div>
