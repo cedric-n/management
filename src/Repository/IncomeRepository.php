@@ -20,7 +20,7 @@ class IncomeRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Income[] Returns an array of Income objects
+    //  * @return IncomeFixtures[] Returns an array of IncomeFixtures objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class IncomeRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Income
+    public function findOneBySomeField($value): ?IncomeFixtures
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')

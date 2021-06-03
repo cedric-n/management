@@ -97,7 +97,7 @@ class IncomeController extends AbstractController
 
     /**
      * @Route("edit/{id<^[0-9]+$>}", name="edit", methods={"GET","POST"})
-     * @ParamConverter("income", class="App\Entity\Income", options={"mapping": {"id": "id"}})
+     * @ParamConverter("income", class="App\Entity\IncomeFixtures", options={"mapping": {"id": "id"}})
      * @param Request $request
      * @param Income $income
      * @return Response
@@ -125,7 +125,7 @@ class IncomeController extends AbstractController
 
     /**
      * @Route("delete/{id<^[0-9]+$>}", name="delete", methods={"DELETE"})
-     * @ParamConverter("income", class="App\Entity\Income", options={"mapping": {"id": "id"}})
+     * @ParamConverter("income", class="App\Entity\IncomeFixtures", options={"mapping": {"id": "id"}})
      * @param Request $request
      * @param Income $income
      * @return Response
