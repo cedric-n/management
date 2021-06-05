@@ -6,6 +6,7 @@
 
 {% block body %}
     <main>
-        {% include 'budget/_form.html.twig' %}
+        {% include 'budget/_form.html.twig' with { 'button_label': 'Ajout'} %}
     </main>
 {% endblock %}
+

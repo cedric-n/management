@@ -10,13 +10,21 @@ li, a {
 }
 
 /* navBars structure*/
+/*
 nav {
+  height: 136px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: var(--spacing) var(--spacing5);
   background-color: var(--first-color);
+}
+
+ */
+
+nav {
+  height: 136px;
 }
 
 .nav_links {
@@ -63,88 +71,5 @@ button:hover {
   display:none;
 }
 
-
-
-@media screen and (max-width: 768px) {
-
-
-
-  input[type=checkbox]:not(:checked) ~ ul {
-    display: none;
-  }
-
-  a {
-    margin-right: 16px;
-  }
-
-
-
-  nav {
-    justify-content: space-between;
-    padding: var(--spacing) 0;
-    height: 10%;
-  }
-
-  .nav_links {
-    display: inline-block;
-    position: absolute;
-    top:96px;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1;
-  }
-
-  .nav_links li {
-    display: flex;
-    justify-content: center;
-    padding: 8px 0;
-  }
-
-  li:hover {
-    background-color: var(--second-color);
-  }
-
-  .nav_links li a:hover {
-    color: var(--third-color);
-  }
-
-  .logo {
-    cursor: pointer;
-    width: calc(var(--spacing5)*2);
-    height: calc(var(--spacing5)*2);
-    padding: 0;
-    margin-left: 8px;
-  }
-
-  .burger div{
-    width: 60px;
-    height: 10px;
-    background-color: var(--fourth-color);
-    margin-bottom: 6px;
-    border-radius: 15px;
-  }
-
-  .cta {
-    display: none;
-  }
-
-  .check-burger {
-    visibility: hidden;
-  }
-
-  label {
-    position: relative;
-    width: 60px;
-    height: 48px;
-    left: 117px;
-    bottom: 3px;
-    z-index: 2;
-  }
-
-
-
-
-}
 
 

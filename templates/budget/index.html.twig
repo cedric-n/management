@@ -2,26 +2,58 @@
 
 {% block stylesheets %}
         {{ encore_entry_link_tags('home') }}
+        {{ encore_entry_link_tags('userBudget') }}
 {% endblock %}
 
 {% block body %}
         <main>
-                <h1>All Type Budget :</h1>
 
-                {% for budget in budgets %}
-                        <div>
-                                <h2>{{ loop.index }} / Name : {{ budget.name }} - Type : {{ budget.type }}  </h2>
-                                <a href="{{ path("budget_show", { budgetName: budget.name }) }}"> Voir détails</a>
-                                <div>
-                                        {{ include('budget/_delete.html.twig') }}
-                                </div>
-                        </div>
-                {% else %}
-                        Aucun autre budget
-                {% endfor %}
+                {{ include('userInterface/_sidebars.html.twig') }}
 
-                <a href="{{ path('home_index') }}">
-                        Retour à la homepage
-                </a>
+                <div class="w-100">
+                        <table class="table table-sm table-light table-striped table-hover">
+                                <thead class="table-primary">
+                                <tr>
+                                        <th scope="col">Nom</th>
+                                        <th class="text-center" scope="col">Genre</th>
+                                        <th class="d-flex justify-content-end" scope="col">Modifier/Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for budget in budgets %}
+                                        <tr>
+                                                <td>
+                                                        <h2>{{ budget.name }}</h2>
+                                                </td>
+                                                <td class=" text-center">
+                                                        {{ budget.type }}
+                                                </td>
+                                                <td class="d-flex justify-content-end">
+                                                        {{ include('budget/_delete.html.twig') }}
+                                                        <a href="{{ path("budget_edit", { "budgetName": budget.name }) }}">Modifier</a>
+                                                </td>
+                                        </tr>
+                                {% else %}
+                                        Aucun autre budget
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                        <tr>
+                                                <td class="text-center" colspan="3">
+                                                        <a href="{{ path("budget_new") }}">Ajouter un nouveau Budget</a>
+                                                </td>
+                                        </tr>
+                                </tfoot>
+                        </table>
+
+                        <a href="{{ path('home_index') }}">
+                                Retour à la homepage
+                        </a>
+                </div>
+
+
+
+
+
         </main>
 {% endblock %}

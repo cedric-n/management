@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Condensed&display=swap');
-
+@import '~bootstrap/scss/bootstrap';
 :root {
 
   --first-color: #52489C;
@@ -8,6 +8,12 @@
   --third-color: #FFFAFF;
   --fourth-color: #180303;
   --sixth-color:#dddce3;
+
+  $primary: #52489C;
+  $secondary: #30A0E1;
+  $white: #FFFAFF;
+  $dark: #180303;
+
 
 
   --spacing: 8px;
@@ -24,16 +30,19 @@
 }
 
 html {
-  height: 100vh;
+  position: absolute;
+  top:0;
+  bottom: 0;
   width: 100%;
 }
 
 body{
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: var(--sixth-color);
 }
+
 
 p , a {
   font-family: 'Open Sans', sans-serif;
@@ -41,6 +50,12 @@ p , a {
 
 h1, h2, h3, h4 {
   font-family: 'Roboto Condensed', sans-serif;;
+}
+
+svg {
+  height: 40px;
+  width: 40px;
+  color: $primary;
 }
 
 @media screen and (max-width: 600px) {

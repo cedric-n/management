@@ -1,19 +1,7 @@
 @import "app";
 
 footer {
-  position: relative;
-  width: 100%;
-  height: 10%;
-  background-color: var(--first-color);
-  bottom: 0;
-}
-
-.content-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   height: 136px;
-  align-items: center;
 }
 
 .content-footer ul li {

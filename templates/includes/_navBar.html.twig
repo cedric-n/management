@@ -2,28 +2,56 @@
     {{ encore_entry_link_tags('nav') }}
 {% endblock %}
 
+{#
+<nav>
 
-    <nav>
-        <img class="logo" src="{{ asset('build/images/logo.png') }}" alt=""/>
-        <input id="nav-toggle" class="check-burger" type="checkbox">
-        <ul class="nav_links">
-            <li><a href="#">First</a></li>
-            <li><a href="#">Second</a></li>
-            <li><a href="#">Third</a></li>
-            <li><a href="#">Fourth</a></li>
-        </ul>
+    <input id="nav-toggle" class="check-burger" type="checkbox">
+    <ul class="nav_links">
+        <li><a href="#">First</a></li>
+        <li><a href="#">Second</a></li>
+        <li><a href="#">Third</a></li>
+        <li><a href="#">Fourth</a></li>
+    </ul>
 
+
+    <label for="nav-toggle"></label>
+    <a href="#" class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </a>
+</nav>
+#}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary w-100">
+    <div class="container-fluid d-flex ">
+        <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('build/images/logo.png') }}" alt=""/>Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item mx-4">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
         {% if app.user %}
             <a class="cta" href="{{ path("app_logout") }}"><button>Déconnexion</button></a>
         {% else %}
             <a class="cta" href="{{ path("app_login") }}"><button>Connexion</button></a>
         {% endif %}
-        <label for="nav-toggle"></label>
-        <a href="#" class="burger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </a>
-    </nav>
+    </div>
+</nav>
 
 

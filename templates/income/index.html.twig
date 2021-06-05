@@ -2,25 +2,57 @@
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('userBudget') }}
 {% endblock %}
 
 {% block body %}
     <main>
-        <h1>All Incomes :</h1>
 
-        {% for income in incomes %}
-            <div>
-                <h2>{{ loop.index }} / {{ income.name }} - Price : {{ income.price }} - Frequency: {{ income.frequency }}</h2>
-                <a href="{{ path("income_show", { id: income.id}) }}">See details</a>
-                <div>{{ include('income/_delete.html.twig') }}</div>
-            </div>
-        {% else %}
-            Aucun autre revenu
-        {% endfor %}
+        {{ include('userInterface/_sidebars.html.twig') }}
+        <div class="w-100">
+            <table class="table table-sm table-light table-striped table-hover">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th class="text-center" scope="col">Prix</th>
+                    <th class="text-center" scope="col">Fréquence</th>
+                    <th class="d-flex justify-content-end" scope="col">Modifier/Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for income in incomes %}
+                    <tr>
+                        <td>
+                            <h2>{{ income.name }}</h2>
+                        </td>
+                        <td class=" text-center">
+                            {{ income.price }}
+                        </td>
+                        <td class=" text-center">
+                            {{ income.frequency }}
+                        </td>
+                        <td class="d-flex justify-content-end">
+                            {{ include('income/_delete.html.twig') }}
+                            <a href="{{ path("income_edit", { id: income.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    Aucun autre revenu
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="text-center" colspan="4">
+                        <a href="{{ path("income_new") }}">Ajouter un nouveau Revenu</a>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
 
-        <a href="{{ path('home_index') }}">
-            Retour à la homepage
-        </a>
+            <a href="{{ path('home_index') }}">
+                Retour à la homepage
+            </a>
+        </div>
     </main>
 
 {% endblock %}

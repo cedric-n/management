@@ -1,5 +1,11 @@
 @import "app.scss";
 
 main {
-  display: inline;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.second-content {
+  width: 75%;
 }
