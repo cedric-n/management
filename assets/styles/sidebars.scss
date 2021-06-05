@@ -1,0 +1,79 @@
+@import "app.scss";
+
+/*
+.sidebars {
+  height: 100%;
+  width: 25%;
+}
+
+.side-options {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-radius: 1em;
+}
+
+table.side-options,.side-options-body tr  td, .side-options-foot tr td,.side-options-head tr th {
+  border:1px solid var(--sixth-color);
+}
+
+td {
+  text-align: center;
+}
+
+.side-options-head tr{
+  background-color: #DCDCDC;
+  opacity: 0.8;
+}
+
+.side-options-body tr{
+  background-color: var(--third-color);
+  opacity: 0.8;
+  border: 1px solid var(--sixth-color);
+}
+
+.side-options-foot tr{
+  background-color: var(--second-color);
+  opacity: 0.8;
+}
+
+tr:hover {
+  opacity: 1;
+}
+
+td a {
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: var(--spacing2);
+  color: #180303;
+}
+
+tr td a:hover {
+  color: var(--second-color);
+}
+
+tfoot tr td a:hover {
+  color: var(--third-color);
+}
+*/
+.sidebars {
+  width: 20%;
+}
+
+.sidebars ul li {
+  width: 100%;
+}
+
+.nav-item:hover {
+  background-color: var(--first-color);
+  border-radius: 15px;
+}
+
+.sidebars ul li a, .sidebars a{
+  text-decoration: none;
+  color: var(--third-color);
+}
+
+.sidebars ul li a:hover , .sidebars a:hover {
+  color: $primary;
+}

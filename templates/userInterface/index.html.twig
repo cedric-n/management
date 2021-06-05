@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+        {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+        <main>
+                {{ include('userInterface/_sidebars.html.twig') }}
+                <div class="info-content">
+
+                </div>
+        </main>
+{% endblock %}
