@@ -7,8 +7,8 @@
 {% block body %}
         <main>
                 {{ include('userInterface/_sidebars.html.twig') }}
-                <div class="info-content">
-
+                <div class="info-content w-100">
+                        {{ render_chart(chart, {'class': 'my-chart w-100 h-100'}) }}
                 </div>
         </main>
 {% endblock %}
