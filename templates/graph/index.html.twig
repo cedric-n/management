@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Graph index{% endblock %}
+
+{% block body %}
+    <h1>Graph index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for graph in graphs %}
+            <tr>
+                <td>{{ graph.id }}</td>
+                <td>{{ graph.price }}</td>
+                <td>{{ graph.date ? graph.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('graph_show', {'id': graph.id}) }}">show</a>
+                    <a href="{{ path('graph_edit', {'id': graph.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('graph_new') }}">Create new</a>
+{% endblock %}

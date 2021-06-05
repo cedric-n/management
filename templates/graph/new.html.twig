@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Graph{% endblock %}
+
+{% block body %}
+    <h1>Create new Graph</h1>
+
+    {{ include('graph/_form.html.twig') }}
+
+    <a href="{{ path('graph_index') }}">back to list</a>
+{% endblock %}

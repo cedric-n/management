@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Graph{% endblock %}
+
+{% block body %}
+    <h1>Graph</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ graph.id }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ graph.price }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ graph.date ? graph.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('graph_index') }}">back to list</a>
+
+    <a href="{{ path('graph_edit', {'id': graph.id}) }}">edit</a>
+
+    {{ include('graph/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Graph{% endblock %}
+
+{% block body %}
+    <h1>Edit Graph</h1>
+
+    {{ include('graph/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('graph_index') }}">back to list</a>
+
+    {{ include('graph/_delete_form.html.twig') }}
+{% endblock %}
