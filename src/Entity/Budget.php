@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\BudgetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,6 +22,15 @@ class Budget
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message = "Le champ {{ label }} est vide",
+     * )
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 50,
+     *    minMessage= "Le prénom doit au moins contenir {{ limit }} caratères",
+     *    maxMessage= "Le prénom doit au plus contenir {{ limit }} caratères",
+     * )
      */
     private $name;
 
@@ -38,6 +48,11 @@ class Budget
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="budgets")
+     */
+    private $userLink;
 
     public function __construct()
     {
@@ -121,6 +136,18 @@ class Budget
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getUserLink(): ?User
+    {
+        return $this->userLink;
+    }
+
+    public function setUserLink(?User $user): self
+    {
+        $this->userLink = $user;
 
         return $this;
     }

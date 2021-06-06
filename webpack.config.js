@@ -41,6 +41,7 @@ Encore
     .addEntry('home','./assets/styles/home_index.scss')
     .addEntry('sidebars','./assets/styles/sidebars.scss')
     .addEntry('userBudget','./assets/styles/budget.scss')
+    .addEntry('form','./assets/styles/formTemplate.scss')
     .addEntry('appJs','./assets/js/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

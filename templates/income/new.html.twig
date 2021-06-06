@@ -1,11 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block stylesheets %}
     {{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('form') }}
 {% endblock %}
 
 {% block body %}
-    <main>
-        {% include 'income/_form.html.twig' %}
+    <main class="container">
+        <div class="row w-100 d-inline-block">
+
+            <div class="content-form w-100">
+                <div class="border-head d-flex justify-content-center align-items-center text-center w-100 position-relative border bg-primary">
+                    <h1 class="text-white">Ajout de Budget</h1>
+                </div>
+                <div class="form-border d-flex flex-column justify-content-center align-items-center border  bg-white w-1OO">
+
+                    {% include 'income/_form.html.twig' with { 'button_label': 'Ajout'} %}
+                </div>
+            </div>
+            <a href="{{ path('income_index') }}">Retour à la liste des budgets</a>
+        </div>
     </main>
 {% endblock %}

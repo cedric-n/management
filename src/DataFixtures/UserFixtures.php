@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use DateTime;
 
 class UserFixtures extends Fixture
 {
@@ -16,9 +17,14 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
+
+
         // $product = new Product();
         // $manager->persist($product);
         $contributor = new User();
+        $contributor->setFirstname('Goe');
+        $contributor->setLastname('Yown');
+        $contributor->setBirthday(DateTime::createFromFormat('d/m/Y','01/12/1996'));
         $contributor->setEmail('contributor@monsite.com');
         $contributor->setRoles(['ROLE_CONTRIBUTOR']);
         $contributor->setPassword($this->passwordHasher->encodePassword(
@@ -26,9 +32,13 @@ class UserFixtures extends Fixture
                          'contributorpassword'
                      ));
 
+        $this->addReference('contributor_', $contributor);
         $manager->persist($contributor);
 
         $admin = new User();
+        $admin->setFirstname('Admin');
+        $admin->setLastname('First');
+        $admin->setBirthday(DateTime::createFromFormat('d/m/Y','01/12/1997'));
         $admin->setEmail('admin@monsite.com');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword($this->passwordHasher->encodePassword(
@@ -36,6 +46,7 @@ class UserFixtures extends Fixture
             'adminpassword'
         ));
 
+        $this->addReference('admin', $admin);
         $manager->persist($admin);
 
         $manager->flush();

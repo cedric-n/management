@@ -20,7 +20,9 @@ class Income
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le champs {{ label }} doit être rempli pour définir son nom")
+     * @Assert\NotBlank(
+     *     message = "Le champs {{ label }} doit être rempli pour définir son nom"
+     * )
      * @Assert\Length(
      *     min = 10,
      *     max = 25,

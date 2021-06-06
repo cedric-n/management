@@ -33,7 +33,7 @@
                         </td>
                         <td class="d-flex justify-content-end">
                             {{ include('income/_delete.html.twig') }}
-                            <a href="{{ path("income_edit", { id: income.id}) }}">Modifier</a>
+                            <a href="{{ path("income_edit", { 'id' : income.id}) }}">Modifier</a>
                         </td>
                     </tr>
                 {% else %}

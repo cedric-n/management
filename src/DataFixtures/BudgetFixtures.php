@@ -3,12 +3,13 @@
 
 namespace App\DataFixtures;
 
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Budget;
 use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class BudgetFixtures extends Fixture
+class BudgetFixtures extends Fixture implements DependentFixtureInterface
 {
 
     public function load(ObjectManager $manager) {
@@ -21,6 +22,7 @@ class BudgetFixtures extends Fixture
             $budget->setName($faker->jobTitle);
             $budget->setType($faker->numberBetween(0,1));
             $budget->setSlug($budget->getName());
+            $budget->setUserLink($this->getReference('admin'));
 
             $manager->persist($budget);
             $this->addReference('budget_' . $i, $budget);
@@ -28,6 +30,14 @@ class BudgetFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        // TODO: Implement getDependencies() method.
+        return [
+            UserFixtures::class,
+        ];
     }
 
 }
