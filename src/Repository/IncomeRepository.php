@@ -47,4 +47,21 @@ class IncomeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function totalIncome(int $id):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('sum(i.price)')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->where('b.id = :stage')
+            ->setParameter('stage',$id);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }
