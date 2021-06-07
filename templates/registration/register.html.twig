@@ -1,21 +1,40 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('form') }}
+{% endblock %}
+
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    <main class="container">
+        <div class="row w-100 d-inline-block">
 
-    <h1>Register</h1>
+            <div class="content-form w-100">
+                <div class="border-head d-flex justify-content-center align-items-center text-center w-100 position-relative border bg-primary">
+                    <h1 class="text-white">Register</h1>
+                </div>
+                <div class="form-border d-flex flex-column justify-content-center align-items-center border  bg-white w-1OO">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                    {% for flashError in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+
+                    <button type="submit" class="btn">Register</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+            <a href="{{ path('income_index') }}">Retour à la liste des budgets</a>
+        </div>
+    </main>
 {% endblock %}
