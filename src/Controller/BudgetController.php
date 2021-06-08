@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Budget;
 use App\Service\Slugify;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,6 +49,9 @@ class BudgetController extends AbstractController
     {
         $budget = new Budget();
 
+        $date = new DateTime('now');
+        $date->format('d/m/Y');
+
         $form = $this->createForm(BudgetType::class, $budget );
 
         $form->handleRequest($request);
@@ -57,6 +61,7 @@ class BudgetController extends AbstractController
             $slug = $slugify->generate($budget->getName());
             $budget->setSlug($slug);
 
+            $budget->setCreatedAt($date);
             $budget->setUserLink($this->getUser());
 
             $entityManager = $this->getDoctrine()->getManager();

@@ -54,6 +54,11 @@ class Budget
      */
     private $userLink;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->incomes = new ArrayCollection();
@@ -148,6 +153,18 @@ class Budget
     public function setUserLink(?User $user): self
     {
         $this->userLink = $user;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 
 namespace App\DataFixtures;
 
+use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Budget;
 use Faker;
@@ -23,6 +24,7 @@ class BudgetFixtures extends Fixture implements DependentFixtureInterface
             $budget->setType($faker->numberBetween(0,1));
             $budget->setSlug($budget->getName());
             $budget->setUserLink($this->getReference('admin'));
+            $budget->setCreatedAt(DateTime::createFromFormat('d/m/Y','01/12/2020'));
 
             $manager->persist($budget);
             $this->addReference('budget_' . $i, $budget);
