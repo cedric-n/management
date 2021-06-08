@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Budget;
 use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\BudgetType;
@@ -56,9 +57,12 @@ class BudgetController extends AbstractController
             $slug = $slugify->generate($budget->getName());
             $budget->setSlug($slug);
 
+            $budget->setUserLink($this->getUser());
+
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->persist($budget);
+
 
             $entityManager->flush();
 
@@ -108,6 +112,10 @@ class BudgetController extends AbstractController
      */
     public function edit(Request $request, Budget $budget): Response
     {
+
+        if (!($this->getUser() == $budget->getUserLink())) {
+            throw new AccessDeniedException('Vous accédez à une donnée qui n\'est pas votre !');
+        }
 
         $form = $this->createForm(BudgetType::class, $budget);
 

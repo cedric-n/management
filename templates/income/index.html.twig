@@ -21,6 +21,9 @@
                 </thead>
                 <tbody>
                 {% for income in incomes %}
+                    {% for dataBudget in dataBudgetUser %}
+
+                    {% if income.budget.id == dataBudget.id %}
                     <tr>
                         <td>
                             <h2>{{ income.name }}</h2>
@@ -36,6 +39,8 @@
                             <a href="{{ path("income_edit", { 'id' : income.id}) }}">Modifier</a>
                         </td>
                     </tr>
+                    {% endif %}
+                    {% endfor %}
                 {% else %}
                     Aucun autre revenu
                 {% endfor %}

@@ -21,6 +21,7 @@
                                 </thead>
                                 <tbody>
                                 {% for budget in budgets %}
+                                        {% if budget.userLink.id == app.user.id  %}
                                         <tr>
                                                 <td>
                                                         <h2>{{ budget.name }}</h2>
@@ -33,6 +34,7 @@
                                                         <a href="{{ path("budget_edit", { "budgetName": budget.name }) }}">Modifier</a>
                                                 </td>
                                         </tr>
+                                        {% endif %}
                                 {% else %}
                                         Aucun autre budget
                                 {% endfor %}

@@ -80,9 +80,15 @@ class User implements UserInterface
      */
     private $budgets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Income::class, mappedBy="owner")
+     */
+    private $incomes;
+
     public function __construct()
     {
         $this->budgets = new ArrayCollection();
+        $this->incomes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -226,6 +232,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($budget->getUser() === $this) {
                 $budget->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Income[]
+     */
+    public function getIncomes(): Collection
+    {
+        return $this->incomes;
+    }
+
+    public function addIncome(Income $income): self
+    {
+        if (!$this->incomes->contains($income)) {
+            $this->incomes[] = $income;
+            $income->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIncome(Income $income): self
+    {
+        if ($this->incomes->removeElement($income)) {
+            // set the owning side to null (unless already changed)
+            if ($income->getOwner() === $this) {
+                $income->setOwner(null);
             }
         }
 

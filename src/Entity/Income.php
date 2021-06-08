@@ -55,6 +55,11 @@ class Income
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="incomes")
+     */
+    private $owner;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,6 +121,18 @@ class Income
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

@@ -64,4 +64,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    public function currentUserBudget(string $userEmail):array
+    {
+
+
+        $qb = $this->createQueryBuilder('u')
+            ->select('b.id')
+            ->join('u.budgets', 'b', ' b.id = u.budget_id')
+            ->where('u.email = :stage')
+            ->groupBy('b.id')
+            ->setParameter('stage',$userEmail);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 }
