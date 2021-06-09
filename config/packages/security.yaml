@@ -1,6 +1,7 @@
 security:
     role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+        ROLE_MEMBER: ROLE_USER
+        ROLE_ADMIN:
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -39,5 +40,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/budgets/, roles: ROLE_USER}
-        - { path: ^/incomes/, roles: ROLE_USER}
+        - { path: ^/budgets/, roles: ROLE_MEMBER}
+        - { path: ^/incomes/, roles: ROLE_MEMBER}
