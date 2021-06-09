@@ -74,8 +74,15 @@ class UserInterfaceController extends AbstractController
 
         $chart->setOptions([/* ... */]);
 
+        $infoType0 = $incomeRepository->totalSumByType0($this->getUser()->getUsername(),0);
+        $infoType1 = $incomeRepository->totalSumByType0($this->getUser()->getUsername(),1);
+        $wallet = floatval($infoType1[0]["total"]) - floatval($infoType0[0]["total"]);
+
         return $this->render('userInterface/index.html.twig',[
             'chart' => $chart,
+            'infoType0' => $infoType0,
+            'infoType1' => $infoType1,
+            'wallet' => $wallet,
         ]);
     }
 

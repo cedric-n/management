@@ -105,4 +105,23 @@ class IncomeRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function totalSumByType0(string $username,int $type):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('(sum(i.price)) as total')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->join('i.owner','u', 'u.id = i.owner_id')
+            ->where('u.email = :username and b.type= :genre')
+            ->setParameter('username',$username)
+            ->setParameter('genre', $type);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 }

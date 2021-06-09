@@ -2,13 +2,38 @@
 
 {% block stylesheets %}
         {{ encore_entry_link_tags('home') }}
+        {{ encore_entry_link_tags('userInterface') }}
 {% endblock %}
 
 {% block body %}
         <main>
                 {{ include('userInterface/_sidebars.html.twig') }}
-                <div class="info-content w-100">
-                        {{ render_chart(chart, {'class': 'my-chart w-100 h-100'}) }}
+                <div class="info-content w-100 ">
+                        <div class="d-flex justify-content-between text-center bg-light">
+                                <div>
+                                        <h3>Information de {{ app.user.firstname }}</h3>
+                                        <img src="#">
+                                </div>
+                                <div>
+                                        <h3>Montant Total des revenus de type 0:</h3>
+                                        {% for info in infoType0 %}
+                                                <p>{{ info.total }}</p>
+                                        {% endfor %}
+                                </div>
+                                <div>
+                                        <h3>Montant Total des revenus de type 1:</h3>
+                                        {% for info in infoType1 %}
+                                                <p>{{ info.total }}</p>
+                                        {% endfor %}
+                                </div>
+                                <div>
+                                        <h3>Portefeuille:</h3>
+
+                                        <p>{{ wallet }}</p>
+                                </div>
+
+                        </div>
+                        {{ render_chart(chart, {'class': 'my-chart '}) }}
                 </div>
         </main>
 {% endblock %}
