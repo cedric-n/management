@@ -33,9 +33,10 @@ class Income
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Le champs {{ label }} doit être rempli pour définir un montant")
      * @Assert\PositiveOrZero
+     * @Assert\Type(type="float")
      */
     private $price;
 
@@ -77,12 +78,12 @@ class Income
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 

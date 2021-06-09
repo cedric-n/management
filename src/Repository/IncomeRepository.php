@@ -64,4 +64,45 @@ class IncomeRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function dataSumByType1(string $username):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('(b.name) as budgetID' ,'(b.createdAt) as date', '(sum(i.price)) as total', '(b.type) as type')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->join('i.owner','u', 'u.id = i.owner_id')
+            ->where('u.email = :username and b.type=1')
+            ->orderBy('b.createdAt', 'ASC')
+            ->groupBy('b.id')
+            ->setParameter('username',$username);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+    public function dataSumByType2(string $username):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('(b.name) as budgetID' ,'(b.createdAt) as date', '(sum(i.price)) as total', '(b.type) as type')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->join('i.owner','u', 'u.id = i.owner_id')
+            ->where('u.email = :username and b.type=0')
+            ->orderBy('b.createdAt', 'ASC')
+            ->groupBy('b.id')
+            ->setParameter('username',$username);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 }

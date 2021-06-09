@@ -10,6 +10,7 @@ use LogicException;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -32,7 +33,9 @@ class IncomeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('price', IntegerType::class)
+            ->add('price', NumberType::class,[
+                'scale' => 2,
+            ])
             ->add('frequency', ChoiceType::class,[
                 'choices' => [
                     'Quotidienne' => 0,

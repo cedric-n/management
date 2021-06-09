@@ -32,14 +32,9 @@ class IncomeController extends AbstractController
             ->getRepository(Income::class)
             ->findAll();
 
-        $currentUser = $this->getUser()->getUsername();
-
-        $dataBudgetUser = $userRepository->currentUserBudget($currentUser);
-
         return $this->render(
             'income/index.html.twig',[
                 'incomes' => $incomes,
-                'dataBudgetUser' => $dataBudgetUser,
             ]);
     }
 

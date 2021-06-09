@@ -21,9 +21,7 @@
                 </thead>
                 <tbody>
                 {% for income in incomes %}
-                    {% for dataBudget in dataBudgetUser %}
-
-                    {% if income.budget.id == dataBudget.id %}
+                    {% if income.owner.id == app.user.id %}
                     <tr>
                         <td>
                             <h2>{{ income.name }}</h2>
@@ -40,7 +38,6 @@
                         </td>
                     </tr>
                     {% endif %}
-                    {% endfor %}
                 {% else %}
                     Aucun autre revenu
                 {% endfor %}

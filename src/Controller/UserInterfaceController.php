@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\IncomeRepository;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,20 +20,54 @@ class UserInterfaceController extends AbstractController
 {
     /**
      * @param ChartBuilderInterface $chartBuilder
+     * @param IncomeRepository $incomeRepository
      * @return Response
      * @Route("", name="index")
      */
-    public function index(ChartBuilderInterface $chartBuilder):Response
+    public function index(ChartBuilderInterface $chartBuilder, IncomeRepository $incomeRepository):Response
     {
+
+        $labels = [];
+        $datasets = [];
+        $labels2 = [];
+        $datasets2 = [];
+
+
+        $data1 = $incomeRepository->dataSumByType1($this->getUser()->getUsername());
+        $data2 = $incomeRepository->dataSumByType2($this->getUser()->getUsername());
+
+        var_dump($data2);
+
+        foreach ($data1 as $data) {
+
+            $labels[] = $data["date"];
+            $datasets[] = floatval($data["total"]);
+        }
+
+        foreach ($data2 as $data) {
+
+            $labels2[] = $data["date"];
+            $datasets2[] = floatval($data["total"]);
+        }
+
+
+
+
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'labels' => $labels,$labels2,
             'datasets' => [
                 [
                     'label' => 'My First dataset',
                     'backgroundColor' => 'rgb(255, 99, 132)',
                     'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                    'data' => $datasets,
+                ],
+                [
+                    'label' => 'My Second dataset',
+                    'backgroundColor' => null,
+                    'borderColor' => 'rgb(132, 255, 99)',
+                    'data' => $datasets2
                 ],
             ],
         ]);
