@@ -45,21 +45,6 @@ class IncomeType extends AbstractType
                     'Annuelle' => 4
                 ],
             ]);
-            /*
-            ->add('budget', EntityType::class, [
-                'class' => Budget::class,
-                /*'query_builder' => function (EntityRepository $er) use ($id)
-                {
-                    return $er->createQueryBuilder('u')
-                        ->select('u.name')
-                        ->where('u.userLink = :currentUser')
-                        ->setParameter('currentUser', $id),
-                },
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => true,
-            ]) */
-
 
         // grab the user, do a quick sanity check that one exists
         $user = $this->security->getUser();

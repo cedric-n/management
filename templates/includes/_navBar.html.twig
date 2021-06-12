@@ -23,35 +23,36 @@
 </nav>
 #}
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-primary w-100">
-    <div class="container-fluid d-flex ">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('build/images/logo.png') }}" alt=""/>Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item mx-4">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item mx-4">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item mx-4">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item mx-4">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-        </div>
-        {% if app.user %}
-            <a class="cta" href="{{ path("app_logout") }}"><button>Déconnexion</button></a>
-        {% else %}
-            <a class="cta" href="{{ path("app_login") }}"><button>Connexion</button></a>
-        {% endif %}
     </div>
+    {% if not (app.user) %}
+    <button class="btn">
+        <a href="{{ path("app_login") }}">Se connecter</a>
+    </button>
+    {% endif %}
 </nav>
-
-
+<div id="navbarCollapse" class="collapse navbar-collapse bg-dark">
+    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav d-flex align-items-center">
+        <li class="nav-item"><a class="btn btn-outline-warning" href="{{ path("home_index") }}" target="_blank">Accueil</a></li>
+        {% if app.user and is_granted("ROLE_MEMBER") %}
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('userinterface_index') }}">Tableau de bord</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('budget_index') }}">Gestion de Budget</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('income_index') }}">Gestion de Revenu</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('user_edit', { id : app.user.id }) }}">Paramètre</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('app_logout') }}">Déconnexion</a></li>
+        {% elseif app.user and is_granted("ROLE_ADMIN") %}
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="#">Gestion Accueil</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('user_index') }}">Gestion Utilistaeur</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('user_edit', { id : app.user.id }) }}">Paramètre</a></li>
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('app_logout') }}">Déconnexion</a></li>
+        {% else %}
+            <li class="nav-item py-2"><a class="btn btn-outline-warning" href="{{ path('app_login') }}">Connexion</a></li>
+        {% endif %}
+    </ul>
+</div>

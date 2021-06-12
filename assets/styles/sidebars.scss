@@ -77,3 +77,11 @@ tfoot tr td a:hover {
 .sidebars ul li a:hover , .sidebars a:hover {
   color: $primary;
 }
+
+
+@media screen  and (max-width: 768px) {
+
+  .side-none {
+    display: none;
+  }
+}

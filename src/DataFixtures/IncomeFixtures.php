@@ -29,7 +29,7 @@ class IncomeFixtures extends Fixture implements DependentFixtureInterface
             $income->setFrequency($faker->numberBetween(0,4));
             $income->setBudget($this->getReference('budget_' . $faker->numberBetween(0,3) ));
             $income->setSlug($income->getName());
-            $income->setOwner($this->getReference('admin'));
+            $income->setOwner($this->getReference('contributor_'));
 
             $manager->persist($income);
         }

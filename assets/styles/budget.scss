@@ -1,2 +1,13 @@
 @import "app.scss";
 
+.btn:hover {
+  background-color: var(--first-color);
+}
+
+a {
+  color:var(--first-color);
+}
+
+.side-budget {
+  background-color: var(--first-color);
+}

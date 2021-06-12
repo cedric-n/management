@@ -5,16 +5,55 @@ form {
 }
 
 .form-border {
-  height: 90%;
   border-radius: 0 0 45px 45px;
 }
 
-.border-head {
-  margin-top: 80px;
-  height: 10%;
-  border-radius: 45px 45px 0 0;
+.head-login-form {
+  width: 50%;
 }
 
-.content-form {
-  height: 80%;
+.body-login-form {
+  width: 50%;
 }
+
+.head-form {
+  width: 75%;
+}
+
+.body-form {
+  width: 75%;
+  height: 75%;
+}
+
+.border-head {
+  border-radius: 45px 45px 0 0;
+  background-color: var(--first-color);
+}
+
+.button-form {
+  background-color: var(--first-color);
+}
+
+@media screen and (max-width: 768px){
+  .form-border {
+    width: 100%;
+  }
+
+  .border-head {
+    width: 100%;
+  }
+
+  .head-form {
+    width: 100%;
+  }
+
+  .body-form {
+    width: 100%;
+    height: 50%;
+  }
+
+  .mobile-display {
+    empty-cells: hide;
+  }
+}
+

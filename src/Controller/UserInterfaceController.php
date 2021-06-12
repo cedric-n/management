@@ -36,7 +36,6 @@ class UserInterfaceController extends AbstractController
         $data1 = $incomeRepository->dataSumByType1($this->getUser()->getUsername());
         $data2 = $incomeRepository->dataSumByType2($this->getUser()->getUsername());
 
-        var_dump($data2);
 
         foreach ($data1 as $data) {
 

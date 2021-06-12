@@ -8,16 +8,16 @@
 {% endblock %}
 
 {% block body %}
-    <main class="container">
-        <div class="row w-100 d-inline-block">
+    <main class="container d-flex justify-content-center align-items-center">
+        <div class="row w-100 d-flex justify-content-center align-items-center">
 
-            <div class="content-form w-100">
-                <div class="border-head d-flex justify-content-center align-items-center text-center w-100 position-relative border bg-primary">
+            <div class="content-form d-flex flex-column justify-content-center align-items-center w-100">
+                <div class="head-form border-head d-flex justify-content-center align-items-center text-center position-relative border py-3">
                     <h1 class="text-white">Ajout de Budget</h1>
                 </div>
-                <div class="form-border d-flex flex-column justify-content-center align-items-center border  bg-white w-1OO">
+                <div class="body-form form-border d-flex flex-column justify-content-center align-items-center border  bg-white py-3">
 
-                    {% include 'income/_form.html.twig' with { 'button_label': 'Modifier'} %}
+                    {% include 'income/_form.html.twig' with { 'button_label': 'Modifier', 'class': 'button-form'} %}
                 </div>
                 <a href="{{ path('income_index') }}">Retour à la liste des revenus</a>
             </div>

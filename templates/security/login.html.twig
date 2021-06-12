@@ -11,16 +11,16 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <div class="row w-100 d-inline-block">
+    <main class="container d-flex justify-content-center h-100">
+        <div class="row w-100 d-flex justify-content-center align-items-center">
 
-            <div class="content-form w-100">
-                <div class="border-head d-flex justify-content-center align-items-center text-center w-100 position-relative border bg-primary">
+            <div class="content-form w-100 d-flex flex-column justify-content-center align-items-center">
+                <div class=" head-login-form border-head d-flex justify-content-center align-items-center text-center position-relative border bg-primary py-3">
                     <h1 class="text-white">Connexion</h1>
                 </div>
-                <div class="form-border d-flex flex-column justify-content-center align-items-center border  bg-white w-1OO">
+                <div class="body-login-form form-border d-flex flex-column justify-content-center align-items-center border  bg-white py-5">
 
-                    <form method="post">
+                    <form method="post" class="w-50">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
@@ -57,8 +57,8 @@
                         </button>
                     </form>
                 </div>
+                <a href="{{ path('home_index') }}">Retour à l'acceuil</a>
             </div>
-            <a href="{{ path('home_index') }}">Retour à l'acceuil</a>
         </div>
     </main>
 {% endblock %}

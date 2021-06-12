@@ -3,12 +3,12 @@
 {% endblock %}
 
 <div class="banner bg-dark h-25 w-100 d-flex flex-column justify-content-center align-items-center text-white">
-    <div class="presentation d-flex flex-column align-items-sm-start">
-        <h2>Bienvenu sur ***** </h2>
-        <p class="mt-1">Ici vous pourrez gérer l'évolution de votre économie et créez un emploi du temps à votre mesure</p>
+    <div class="presentation d-flex flex-column align-items-sm-start w-100 h-50">
+        <h2 class="px-2 text-center w-100">Bienvenu sur ***** </h2>
+        <p class="mt-1 px-2 text-center w-100">Ici vous pourrez gérer l'évolution de votre économie et créez un emploi du temps à votre mesure</p>
     </div>
-    <div class="sign-up mt-1 d-flex justify-content-lg-start">
-        <button><a href="{{ path("app_register") }}">S'inscrire</a></button>
-        <button>Voire les fonctionnalités</button>
+    <div class="sign-up mt-1 d-flex justify-content-center w-100 h-25">
+        <button class="btn btn-primary mx-1"><a href="{{ path("app_register") }}">S'inscrire</a></button>
+        <button class="btn btn-primary mx-1">Voire les fonctionnalités</button>
     </div>
 </div>

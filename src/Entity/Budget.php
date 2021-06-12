@@ -36,6 +36,9 @@ class Budget
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *     message = "Le champ {{ label }} est vide",
+     * )
      */
     private $type;
 

@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
         $contributor->setLastname('Yown');
         $contributor->setBirthday(DateTime::createFromFormat('d/m/Y','01/12/1996'));
         $contributor->setEmail('contributor@monsite.com');
-        $contributor->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor->setRoles(['ROLE_MEMBER']);
         $contributor->setPassword($this->passwordHasher->encodePassword(
                          $contributor,
                          'contributorpassword'

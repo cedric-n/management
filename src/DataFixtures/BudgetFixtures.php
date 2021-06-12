@@ -23,7 +23,7 @@ class BudgetFixtures extends Fixture implements DependentFixtureInterface
             $budget->setName($faker->jobTitle);
             $budget->setType($faker->numberBetween(0,1));
             $budget->setSlug($budget->getName());
-            $budget->setUserLink($this->getReference('admin'));
+            $budget->setUserLink($this->getReference('contributor_'));
             $budget->setCreatedAt(DateTime::createFromFormat('d/m/Y',"01/12/" . $faker->numberBetween(2000,2020)));
 
             $manager->persist($budget);

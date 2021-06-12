@@ -20,7 +20,9 @@
                     {% include 'income/_form.html.twig' with { 'button_label': 'Ajout'} %}
                 </div>
             </div>
-            <a href="{{ path('income_index') }}">Retour à la liste des budgets</a>
+            <div class="d-flex justify-content-center align-items-center w-75">
+                <a href="{{ path('income_index') }}">Retour à la liste des budgets</a>
+            </div>
         </div>
     </main>
 {% endblock %}

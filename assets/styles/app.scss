@@ -30,22 +30,29 @@
 }
 
 html {
-  position: absolute;
-  top:0;
-  bottom: 0;
+
   width: 100%;
 }
 
 body{
-  position: relative;
-  height: 100%;
+
   width: 100%;
   background-color: var(--sixth-color);
 }
 
+nav, footer {
+  background-color: var(--first-color);
+}
 
-p , a {
+
+p , a , a:hover{
   font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+}
+
+a {
+  color: var(--third-color);
+  font-weight: bold;
 }
 
 h1, h2, h3, h4 {
