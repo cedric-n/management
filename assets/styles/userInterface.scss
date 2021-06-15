@@ -4,3 +4,14 @@
   background-color: var(--first-color);
   opacity: 0.8;
 }
+
+
+
+@media screen and  (max-width: 768px){
+
+  .date-mobile {
+    flex-direction: column;
+  }
+
+
+}

@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
+        {{ parent() }}
         {{ encore_entry_link_tags('home') }}
         {{ encore_entry_link_tags('userInterface') }}
 {% endblock %}
+
 
 {% block body %}
         <main>
@@ -38,6 +40,10 @@
                                 </div>
 
                         </div>
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
                         {{ render_chart(chart, {'class': 'my-chart  h-50 w-100'}) }}
                 </div>
         </main>
