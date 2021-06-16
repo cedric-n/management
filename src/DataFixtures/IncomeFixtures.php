@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
+use DateTime;
 use App\Entity\Income;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -30,6 +31,8 @@ class IncomeFixtures extends Fixture implements DependentFixtureInterface
             $income->setBudget($this->getReference('budget_' . $faker->numberBetween(0,3) ));
             $income->setSlug($income->getName());
             $income->setOwner($this->getReference('contributor_'));
+            $income->setDateAt($faker->dateTimeBetween('-30 days','now'));
+            $income->setType($faker->boolean());
 
             $manager->persist($income);
         }

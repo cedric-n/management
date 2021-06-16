@@ -5,11 +5,12 @@ namespace App\Form;
 use App\Entity\Budget;
 use App\Entity\Income;
 use App\Repository\BudgetRepository;
-use Doctrine\ORM\EntityRepository;
 use LogicException;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -17,7 +18,6 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class IncomeType extends AbstractType
 {
@@ -44,6 +44,16 @@ class IncomeType extends AbstractType
                     'Trimestrielle' => 3,
                     'Annuelle' => 4
                 ],
+            ])
+            ->add('dateAt', DateType::class,[
+                'label' => 'Date du revenu',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+            ])
+            ->add('type',CheckboxType::class,[
+                'label' => 'Est-ce une entrée ?',
+                'required' => false,
             ]);
 
         // grab the user, do a quick sanity check that one exists

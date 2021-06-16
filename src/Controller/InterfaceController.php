@@ -43,8 +43,9 @@ class InterfaceController extends AbstractController
         $datasets3 = [];
         $datasets4 = [];
 
-        $data1 = $incomeRepository->dataSumByType1($this->getUser()->getUsername());
-        $data2 = $incomeRepository->dataSumByType2($this->getUser()->getUsername());
+        $data1 = $incomeRepository->dataSumByType12($this->getUser()->getUsername());
+        $data2 = $incomeRepository->dataSumByType02($this->getUser()->getUsername());
+
 
         /* Put date and total sum in two subdata */
         foreach ($data1 as $data) {

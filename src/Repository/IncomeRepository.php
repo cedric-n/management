@@ -84,6 +84,45 @@ class IncomeRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+    public function dataSumByType12(string $username):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('(b.name) as budgetID' ,'(i.dateAt) as date', '(sum(i.price)) as total', '(i.type) as type')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->join('i.owner','u', 'u.id = i.owner_id')
+            ->where('u.email = :username and i.type=1')
+            ->orderBy('i.dateAt', 'ASC')
+            ->groupBy('i.id')
+            ->setParameter('username',$username);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+    public function dataSumByType02(string $username):array
+    {
+
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('(b.name) as budgetID' ,'(i.dateAt) as date', '(sum(i.price)) as total', '(i.type) as type')
+            ->join('i.budget', 'b', ' b.id = i.budget_id')
+            ->join('i.owner','u', 'u.id = i.owner_id')
+            ->where('u.email = :username and i.type=0')
+            ->orderBy('i.dateAt', 'ASC')
+            ->groupBy('i.id')
+            ->setParameter('username',$username);
+
+
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 
     public function dataSumByType2(string $username):array
     {
@@ -113,7 +152,7 @@ class IncomeRepository extends ServiceEntityRepository
             ->select('(sum(i.price)) as total')
             ->join('i.budget', 'b', ' b.id = i.budget_id')
             ->join('i.owner','u', 'u.id = i.owner_id')
-            ->where('u.email = :username and b.type= :genre')
+            ->where('u.email = :username and i.type= :genre')
             ->setParameter('username',$username)
             ->setParameter('genre', $type);
 

@@ -61,6 +61,16 @@ class Income
      */
     private $owner;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateAt;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +144,30 @@ class Income
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getDateAt(): ?\DateTimeInterface
+    {
+        return $this->dateAt;
+    }
+
+    public function setDateAt(\DateTimeInterface $dateAt): self
+    {
+        $this->dateAt = $dateAt;
+
+        return $this;
+    }
+
+    public function getType(): ?bool
+    {
+        return $this->type;
+    }
+
+    public function setType(bool $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
