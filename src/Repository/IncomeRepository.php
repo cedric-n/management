@@ -65,26 +65,13 @@ class IncomeRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function dataSumByType1(string $username):array
-    {
-
-
-        $qb = $this->createQueryBuilder('i')
-            ->select('(b.name) as budgetID' ,'(b.createdAt) as date', '(sum(i.price)) as total', '(b.type) as type')
-            ->join('i.budget', 'b', ' b.id = i.budget_id')
-            ->join('i.owner','u', 'u.id = i.owner_id')
-            ->where('u.email = :username and b.type=1')
-            ->orderBy('b.createdAt', 'ASC')
-            ->groupBy('b.id')
-            ->setParameter('username',$username);
-
-
-
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-    public function dataSumByType12(string $username):array
+    /**
+     * Search name of budget, date, type of incomes where type can be 1 or 0, and get the sum of it
+     * @param string $username
+     * @param int $type
+     * @return array
+     */
+    public function searchIncomeByType(string $username,int $type):array
     {
 
 
@@ -92,10 +79,11 @@ class IncomeRepository extends ServiceEntityRepository
             ->select('(b.name) as budgetID' ,'(i.dateAt) as date', '(sum(i.price)) as total', '(i.type) as type')
             ->join('i.budget', 'b', ' b.id = i.budget_id')
             ->join('i.owner','u', 'u.id = i.owner_id')
-            ->where('u.email = :username and i.type=1')
+            ->where('u.email = :username and i.type= :genre')
             ->orderBy('i.dateAt', 'ASC')
             ->groupBy('i.id')
-            ->setParameter('username',$username);
+            ->setParameter('username',$username)
+            ->setParameter('genre',$type);
 
 
 
@@ -104,47 +92,13 @@ class IncomeRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function dataSumByType02(string $username):array
-    {
-
-
-        $qb = $this->createQueryBuilder('i')
-            ->select('(b.name) as budgetID' ,'(i.dateAt) as date', '(sum(i.price)) as total', '(i.type) as type')
-            ->join('i.budget', 'b', ' b.id = i.budget_id')
-            ->join('i.owner','u', 'u.id = i.owner_id')
-            ->where('u.email = :username and i.type=0')
-            ->orderBy('i.dateAt', 'ASC')
-            ->groupBy('i.id')
-            ->setParameter('username',$username);
-
-
-
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-
-    public function dataSumByType2(string $username):array
-    {
-
-
-        $qb = $this->createQueryBuilder('i')
-            ->select('(b.name) as budgetID' ,'(b.createdAt) as date', '(sum(i.price)) as total', '(b.type) as type')
-            ->join('i.budget', 'b', ' b.id = i.budget_id')
-            ->join('i.owner','u', 'u.id = i.owner_id')
-            ->where('u.email = :username and b.type=0')
-            ->orderBy('b.createdAt', 'ASC')
-            ->groupBy('b.id')
-            ->setParameter('username',$username);
-
-
-
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-
-    public function totalSumByType0(string $username,int $type):array
+    /**
+     * Search the sum of Income where type are 1 or 0
+     * @param string $username
+     * @param int $type
+     * @return array
+     */
+    public function searchSumIncomeByType(string $username,int $type):array
     {
 
 

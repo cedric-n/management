@@ -36,18 +36,23 @@ class InterfaceController extends AbstractController
     {
 
 
-
+        /**
+         * Range of dates to display on the graph
+         */
         $labels = [];
+        /**
+         * datePeriod will be a variable that take Object DatePeriod
+         */
         $datePeriod = null;
 
         $datasets3 = [];
         $datasets4 = [];
 
-        $data1 = $incomeRepository->dataSumByType12($this->getUser()->getUsername());
-        $data2 = $incomeRepository->dataSumByType02($this->getUser()->getUsername());
+        $data1 = $incomeRepository->searchIncomeByType($this->getUser()->getUsername(),1);
+        $data2 = $incomeRepository->searchIncomeByType($this->getUser()->getUsername(),0);
 
 
-        /* Put date and total sum in two subdata */
+        /* Create an associative arrays where the date is the key and the value is the sum that correspond */
         foreach ($data1 as $data) {
             $dataSubSetsType1[$data['date']] = floatval($data["total"]);
         }
@@ -58,6 +63,7 @@ class InterfaceController extends AbstractController
 
         $defaultData = ['message' => 'Sélectionner un intervalle de date :'];
 
+        // Create a form whithout entity
         $form = $this->createFormBuilder($defaultData)
             ->add('date_start', DateType::class,[
                 'label' => 'Date de début',
@@ -140,8 +146,8 @@ class InterfaceController extends AbstractController
 
         $chart->setOptions([/* ... */]);
 
-        $infoType0 = $incomeRepository->totalSumByType0($this->getUser()->getUsername(),0);
-        $infoType1 = $incomeRepository->totalSumByType0($this->getUser()->getUsername(),1);
+        $infoType0 = $incomeRepository->searchSumIncomeByType($this->getUser()->getUsername(),0);
+        $infoType1 = $incomeRepository->searchSumIncomeByType($this->getUser()->getUsername(),1);
         $wallet = floatval($infoType1[0]["total"]) - floatval($infoType0[0]["total"]);
 
 
