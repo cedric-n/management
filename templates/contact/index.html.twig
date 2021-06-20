@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main class="d-flex align-items-center justify-content-center w-100">
+
+
+    <div class="body-form form-border d-flex flex-column justify-content-center align-items-center border bg-white py-3 w-50">
+        <h1 class="text-center">Contact</h1>
+    {% include 'contact/_form.html.twig' %}
+    </div>
+
+    </main>
+{% endblock %}

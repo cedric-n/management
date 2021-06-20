@@ -44,6 +44,7 @@ Encore
     .addEntry('form','./assets/styles/formTemplate.scss')
     .addEntry('userInterface','./assets/styles/userInterface.scss')
     .addEntry('appJs','./assets/js/app.js')
+    .addEntry('contact-form','./assets/styles/contact.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
